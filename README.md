@@ -1,0 +1,2 @@
+# rush
+pubblic for rushes
