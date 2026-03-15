@@ -1,0 +1,231 @@
+➜  finish git:(master) cd ex00                      
+➜  ex00 git:(master) norminette rush00.c rush01.c rush02.c rush03.c rush04.c main.c
+Setting locale to en_US
+rush00.c: OK!
+rush01.c: OK!
+rush02.c: OK!
+rush03.c: OK!
+rush04.c: OK!
+main.c: OK!
+➜  ex00 git:(master) cc -Wall -Werror -Wextra rush00.c  main.c ft_putchar.c
+➜  ex00 git:(master) ✗ ./a.out
+o----------------------------------------o
+|                                        |
+|                                        |
+|                                        |
+|                                        |
+|                                        |
+|                                        |
+|                                        |
+|                                        |
+|                                        |
+|                                        |
+|                                        |
+|                                        |
+|                                        |
+|                                        |
+|                                        |
+|                                        |
+|                                        |
+|                                        |
+|                                        |
+|                                        |
+|                                        |
+|                                        |
+|                                        |
+|                                        |
+|                                        |
+|                                        |
+|                                        |
+|                                        |
+|                                        |
+|                                        |
+|                                        |
+|                                        |
+|                                        |
+|                                        |
+|                                        |
+|                                        |
+|                                        |
+|                                        |
+|                                        |
+|                                        |
+o----------------------------------------o
+➜  ex00 git:(master) ✗ cc -Wall -Werror -Wextra rush01.c  main.c ft_putchar.c
+➜  ex00 git:(master) ✗ ./a.out                                               
+/****************************************\
+*                                        *
+*                                        *
+*                                        *
+*                                        *
+*                                        *
+*                                        *
+*                                        *
+*                                        *
+*                                        *
+*                                        *
+*                                        *
+*                                        *
+*                                        *
+*                                        *
+*                                        *
+*                                        *
+*                                        *
+*                                        *
+*                                        *
+*                                        *
+*                                        *
+*                                        *
+*                                        *
+*                                        *
+*                                        *
+*                                        *
+*                                        *
+*                                        *
+*                                        *
+*                                        *
+*                                        *
+*                                        *
+*                                        *
+*                                        *
+*                                        *
+*                                        *
+*                                        *
+*                                        *
+*                                        *
+*                                        *
+\****************************************/
+➜  ex00 git:(master) ✗ cc -Wall -Werror -Wextra rush02.c  main.c ft_putchar.c
+➜  ex00 git:(master) ✗ ./a.out                                               
+ABBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBA
+B                                        B
+B                                        B
+B                                        B
+B                                        B
+B                                        B
+B                                        B
+B                                        B
+B                                        B
+B                                        B
+B                                        B
+B                                        B
+B                                        B
+B                                        B
+B                                        B
+B                                        B
+B                                        B
+B                                        B
+B                                        B
+B                                        B
+B                                        B
+B                                        B
+B                                        B
+B                                        B
+B                                        B
+B                                        B
+B                                        B
+B                                        B
+B                                        B
+B                                        B
+B                                        B
+B                                        B
+B                                        B
+B                                        B
+B                                        B
+B                                        B
+B                                        B
+B                                        B
+B                                        B
+B                                        B
+B                                        B
+CBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBC
+➜  ex00 git:(master) ✗ cc -Wall -Werror -Wextra rush03.c  main.c ft_putchar.c
+➜  ex00 git:(master) ✗ ./a.out                                               
+ABBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBC
+B                                        B
+B                                        B
+B                                        B
+B                                        B
+B                                        B
+B                                        B
+B                                        B
+B                                        B
+B                                        B
+B                                        B
+B                                        B
+B                                        B
+B                                        B
+B                                        B
+B                                        B
+B                                        B
+B                                        B
+B                                        B
+B                                        B
+B                                        B
+B                                        B
+B                                        B
+B                                        B
+B                                        B
+B                                        B
+B                                        B
+B                                        B
+B                                        B
+B                                        B
+B                                        B
+B                                        B
+B                                        B
+B                                        B
+B                                        B
+B                                        B
+B                                        B
+B                                        B
+B                                        B
+B                                        B
+B                                        B
+ABBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBC
+➜  ex00 git:(master) ✗ cc -Wall -Werror -Wextra rush04.c  main.c ft_putchar.c
+➜  ex00 git:(master) ✗ ./a.out                                               
+ABBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBC
+B                                        B
+B                                        B
+B                                        B
+B                                        B
+B                                        B
+B                                        B
+B                                        B
+B                                        B
+B                                        B
+B                                        B
+B                                        B
+B                                        B
+B                                        B
+B                                        B
+B                                        B
+B                                        B
+B                                        B
+B                                        B
+B                                        B
+B                                        B
+B                                        B
+B                                        B
+B                                        B
+B                                        B
+B                                        B
+B                                        B
+B                                        B
+B                                        B
+B                                        B
+B                                        B
+B                                        B
+B                                        B
+B                                        B
+B                                        B
+B                                        B
+B                                        B
+B                                        B
+B                                        B
+B                                        B
+B                                        B
+CBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBA
+➜  ex00 git:(master) ✗ 
+
