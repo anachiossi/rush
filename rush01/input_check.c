@@ -6,7 +6,7 @@
 /*   By: anade-mo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/21 08:42:04 by anade-mo          #+#    #+#             */
-/*   Updated: 2026/03/21 09:52:28 by anade-mo         ###   ########.fr       */
+/*   Updated: 2026/03/21 12:34:36 by anade-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	ft_strlen(char *str);
 
-int	ft_input_check(int argc, char *str)
+int	input_check(int argc, char *str)
 {
 	int	i;
 
@@ -34,7 +34,7 @@ int	ft_input_check(int argc, char *str)
 /*
 int	main(int argc, char **argv)
 {
-	if (ft_input_check(argc, argv[1]) == 0)
+	if (input_check(argc, argv[1]) == 0)
 		write(1, "ERROR\n", 6);
 	return (0);
 }*/
