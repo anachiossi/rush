@@ -10,8 +10,8 @@ il programa deve stampare un grid 4 x 4 che soluziona questa sfida, prendendo co
 possiamo usare dividere il programa in parti
 	00 - input_control && error messages
 	01 - input_parser (from terminal char *str to int, save in arrays)
-	02 - count_visible (count how many are visible in a 4 int array)
-	03 - solve_grid (remember to output 1 or 0, yes or no, the clues might not be solvable at all!)
+	02 - count_visible (helper function to help me check and solve the grid, count how many are visible in a 4 int array, compare that number with the input array)
+	03 - solve_grid (backtracking the grid, put a number tries all combinations until one wrong, go back one step. remember to output 1 or 0, yes or no, the clues might not be solvable at all!)
 	04 - print_grid (if solve_grid is 1 (true), print, if not print error)
 	05 - main.c (like LOTR, one ring to rule them all, connect all above)
 
@@ -32,6 +32,9 @@ possiamo usare dividere il programa in parti
 	
 	dentro questa stringa ci sono solo digiti o spazi?
 	if 
+	
+	
+
 	
 	 
 	
