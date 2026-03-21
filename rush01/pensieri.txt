@@ -1,0 +1,44 @@
+*.c significa che possiamo fare quanti .c vogliamo. 
+solo 1 main.c
+
+problema:
+ci dano 16 clues (drite) che sono per forza digiti in una frase separata per ' ', questi numeri sono il risultato di 16 punti di vista diversi di un grid 4 x 4x. i punti di vista possono essere dal "top", "bottom", "left" o "right" e stanno ordinati sempre nella stessa sequenza. cioe, il primo numero sara il punto di vista "col1top".. questa sequenza si vede sul subject.pdf. il numero segna quanti "numeri" sono visibili. i numeri piu grandi nascondono i numeri piu picoli. 
+il programa deve stampare un grid 4 x 4 che soluziona questa sfida, prendendo come input i 16 numeri separati da spazio dal terminal
+
+
+ 
+possiamo usare dividere il programa in parti
+	00 - input_control && error messages
+	01 - input_parser (from terminal char *str to int, save in arrays)
+	02 - count_visible (count how many are visible in a 4 int array)
+	03 - solve_grid (remember to output 1 or 0, yes or no, the clues might not be solvable at all!)
+	04 - print_grid (if solve_grid is 1 (true), print, if not print error)
+	05 - main.c (like LOTR, one ring to rule them all, connect all above)
+
+00-input_control.c
+	
+	tutto a posto con l'imput?
+	int	check_input(int argc, char *str)
+	(per usare questa ft: check_input(argc, argv[1]);
+	
+	0 = error flag
+	1 = all good.
+
+	ma solo una stringa ce l'abbiamo?
+	if (arcg != 2)	return (0);
+
+	la stringa ha la lungeza perfetta? 16 numeri + 15 spazi.
+	if (ft_strlen(str) != 31) return (0);
+	
+	dentro questa stringa ci sono solo digiti o spazi?
+	if 
+	
+	 
+	
+
+
+
+list of reused functions:
+
+	ft_strlen.c
+
