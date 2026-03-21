@@ -1,28 +1,87 @@
-*.c significa che possiamo fare quanti .c vogliamo. 
-solo 1 main.c
+RUSH01 - piano di lavoro
 
-problema:
+REGOLE:
+- *.c significa che il compilatore prende tutti i file .c della cartella
+- un solo main.c
+- funzioni permesse: write, malloc, free
+
+
+PROBLEMA:
+
 ci dano 16 clues (drite) che sono per forza digiti in una frase separata per ' ', questi numeri sono il risultato di 16 punti di vista diversi di un grid 4 x 4x. i punti di vista possono essere dal "top", "bottom", "left" o "right" e stanno ordinati sempre nella stessa sequenza. cioe, il primo numero sara il punto di vista "col1top".. questa sequenza si vede sul subject.pdf. il numero segna quanti "numeri" sono visibili. i numeri piu grandi nascondono i numeri piu picoli. 
 il programa deve stampare un grid 4 x 4 che soluziona questa sfida, prendendo come input i 16 numeri separati da spazio dal terminal
 
+VARIABILI:
+- int grid[4][4]   → la griglia soluzione
+- int clues[16]    → i 16 numeri dall'input
 
- 
+come non possiamo fare piu di 5 variabili dobbiamo memorizzare questa sequencia:
+  // clues[0..3]   = top			
+  // clues[4..7]   = bottom
+  // clues[8..11]  = left
+  // clues[12..15] = right
+
 possiamo usare dividere il programa in parti
 	00 - input_control && error messages
 	01 - input_parser (from terminal char *str to int, save in arrays)
 	02 - count_visible (helper function to help me check and solve the grid, count how many are visible in a 4 int array, compare that number with the input array)
 	03 - solve_grid (backtracking the grid, put a number tries all combinations until one wrong, go back one step. remember to output 1 or 0, yes or no, the clues might not be solvable at all!)
 	04 - print_grid (if solve_grid is 1 (true), print, if not print error)
-	05 - main.c (like LOTR, one ring to rule them all, connect all above)
+	05 - main.c (like LOTR, one ring to rule them all, connect all above
+)
 
-00-input_control.c
+FILE / FUNZIONI:
+
+00 - check_input(int argc, char *str) → int
+     "l'input dell'utente è valido?"
+     - argc == 2?
+     - ft_strlen(str) == 31?
+     - ogni char è '1'-'4' o ' '?
+     - ritorna 1 = ok, 0 = errore
+
+01 - parse(char *str, int clues[16]) → void
+     "come converto la stringa in interi?"
+     - legge str char per char
+     - ogni digit → clues[j] = str[i] - '0'
+
+02 - count_visible(int sequence[4]) → int
+     "quanti grattacieli vedo in questa sequenza?"
+     - primo è sempre visibile
+     - gli altri solo se > massimo visto finora
+     - ritorna il count
+
+03 - solve(int grid[4][4], int clues[16], int n) → int
+     "esiste una griglia che soddisfa tutti i clues?"
+     - n va da 0 a 15 (le 16 celle)
+     - riga = n / 4, colonna = n % 4
+     - se n == 16 → controlla count_visible per tutti i lati
+     - prova 1,2,3,4 in ogni cella
+     - numero già in riga o colonna? salta
+     - metti numero → chiama solve(n+1)
+     - non funziona? rimuovi e prova il prossimo (backtrack)
+     - ritorna 1 = soluzione trovata, 0 = impossibile
+
+04 - print_grid(int grid[4][4]) → void
+     "come stampo la griglia?"
+     - stampa ogni numero separato da spazio
+     - ogni riga su nuova linea
+
+05 - main
+     "chi comanda tutto?"
+     - check_input → se 0, stampa "Error\n", return 1
+     - parse → riempie clues
+     - solve → se 0, stampa "Error\n", return 1
+     - print_grid
+     - return 0
+                                                                                   
+00- ft_input_control.c
 	
 	tutto a posto con l'imput?
 	int	check_input(int argc, char *str)
 	(per usare questa ft: check_input(argc, argv[1]);
 	
 	0 = error flag
-	1 = all good.
+	1 = all good. ok
 
 	ma solo una stringa ce l'abbiamo?
 	if (arcg != 2)	return (0);
@@ -34,13 +93,6 @@ possiamo usare dividere il programa in parti
 	if 
 	
 	
-
-	
-	 
-	
-
-
-
 list of reused functions:
 
 	ft_strlen.c
