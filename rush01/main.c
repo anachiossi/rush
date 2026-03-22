@@ -17,13 +17,25 @@ int	main(int argc, char **argv)
 {
 	int	grid[4][4];
 	int	clues[16];
+	int	x;
+	int	y;
 
+	x = 0;
 	if (input_check(argc, argv[1]) == 0)
 	{
 		write(1, "Error\n", 6);
 		return (1);
 	}
 	input_parse(argv[1], clues);
+	while (x < 4)
+	{
+		y = 0;
+		while (y < 4)
+		{	grid[y][x] = 0;
+			y++;
+		}
+		x++;
+	}
 	if (solve(grid, clues, 0) == 0)
 	{
 		write(1, "Error\n", 6);
