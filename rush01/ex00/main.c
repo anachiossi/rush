@@ -12,22 +12,22 @@
 
 #include <unistd.h>
 
-int		input_check(int argc, char *str);
-void	input_parse(char *str, int clues[16]);
-int		solve(int grid[4][4], int clues[16], int cell);
-void	print_grid(int grid[4][4]);
+int		input_check(int argc, char *str); //checks in input is preciselly ok
+void	input_parse(char *str, int clues[16]); //transforms string into int array 16 = clues[16]
+int		solve(int grid[4][4], int clues[16], int cell); //backtracking logic to fill and test 
+void	print_grid(int grid[4][4]); //prints the grid line by line
 
-int	init(int argc, char **argv)
+int	init(int argc, char **argv) //runs the program and takes the string from terminal
 {
-	if (input_check(argc, argv[1]) == 0)
+	if (input_check(argc, argv[1]) == 0) //if input check find errors 
 	{
-		write(1, "Error\n", 6);
+		write(1, "Error\n", 6); 
 		return (1);
 	}
-	return (0);
+	return (0); 
 }
 
-int	last_check(int grid[4][4], int clues[16], int cell)
+int	last_check(int grid[4][4], int clues[16], int cell) //sends all info to be solved from cell 0, if it has no solution prints error 
 {
 	if (solve(grid, clues, cell) == 0)
 	{
@@ -37,7 +37,7 @@ int	last_check(int grid[4][4], int clues[16], int cell)
 	return (0);
 }
 
-int	main(int argc, char **argv)
+int	main(int argc, char **argv) 
 {
 	int	grid[4][4];
 	int	clues[16];
@@ -45,10 +45,10 @@ int	main(int argc, char **argv)
 	int	y;
 
 	x = 0;
-	if (init(argc, argv) == 1)
+	if (init(argc, argv) == 1) //if input is not ok, closes.
 		return (1);
-	input_parse(argv[1], clues);
-	while (x < 4)
+	input_parse(argv[1], clues); //if input is ok sends it to be transformed and organized
+	while (x < 4) // creates a grid[4][4] and populate it with zero, so is not random.
 	{
 		y = 0;
 		while (y < 4)
@@ -58,8 +58,8 @@ int	main(int argc, char **argv)
 		}
 		x++;
 	}
-	if (last_check(grid, clues, 0) == 1)
+	if (last_check(grid, clues, 0) == 1) //inicializate solution mechanism and if fails, closes.
 		return (1);
-	print_grid(grid);
-	return (0);
+	print_grid(grid); //if solved worked, print the solution
+	return (0); //successfull closure :)
 }
