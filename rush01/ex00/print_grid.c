@@ -1,21 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rush01.h                                           :+:      :+:    :+:   */
+/*   print_grid.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anade-mo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/21 12:58:54 by anade-mo          #+#    #+#             */
-/*   Updated: 2026/03/21 14:30:54 by anade-mo         ###   ########.fr       */
+/*   Created: 2026/03/22 18:42:39 by anade-mo          #+#    #+#             */
+/*   Updated: 2026/03/22 20:25:41 by anade-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int     input_check(int argc, char *str);
-void    input_parse(char *str, int clues[16]);
-int     count_visible(int sequence[4]);
-int     solve(int grid[4][4], int clues[16], int cell);
-void    print_grid(int grid[4][4]);
-int     ft_strlen(char *str);
-int	ft_putchar(char c);
+#include <unistd.h>
+
 int	ft_putnbr(int nb);
 
+void	print_grid(int grid[4][4])
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	while (j < 4)
+	{
+		i = 0;
+		while (i < 4)
+		{
+			ft_putnbr(grid[j][i]);
+			if (i != 3)
+				write(1, " ", 1);
+			i++;
+		}
+		write(1, "\n", 1);
+		j++;
+	}
+}

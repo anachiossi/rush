@@ -1,48 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   input_parse.c                                      :+:      :+:    :+:   */
+/*   count_visible.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anade-mo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/21 13:35:53 by anade-mo          #+#    #+#             */
-/*   Updated: 2026/03/21 14:33:28 by anade-mo         ###   ########.fr       */
+/*   Created: 2026/03/22 19:57:19 by anade-mo          #+#    #+#             */
+/*   Updated: 2026/03/22 20:03:10 by anade-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rush01.h"
-#include <unistd.h>
-
-void	input_parse(char *str, int clues[16])
+int	count_visible(int sequence[4])
 {
+	int	max;
 	int	i;
-	int	j;
+	int	visible;
 
-	j = 0;
-	i = 0;
-	while (str[i])
+	i = 1;
+	max = sequence[0];
+	visible = 1;
+	while (i < 4)
 	{
-		if (str[i] != ' ')
+		if (sequence[i] > max)
 		{
-			clues[j] = str[i] - '0';
-			j++;
+			visible++;
+			max = sequence[i];
 		}
 		i++;
 	}
-	return ;
+	return (visible);
 }
-/*int	main(void)
+/*
+int	main(void)
 {
-	int	clues[16];
-	int	i;
-
-	i = 0;
-	input_parse("4 3 2 1 1 2 2 2 4 3 2 1 1 2 2 2", clues);
-	while (i < 16)
-	{
-		ft_putnbr(clues[i]);
-		i++;
-	}
+	int	sequence[4] = {9, 8, 7, 15}; 
+	
+	ft_putnbr(count_visible(sequence));
 	write(1, "\n", 1);
 	return (0);
 }*/
