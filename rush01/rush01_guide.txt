@@ -1,0 +1,170 @@
+================================================================
+RUSH01 - SOLUTION EXPLAINED - PSEUDO CODE AND "PATH"
+by anade-mo
+================================================================
+
+----------------------------------------------------------------
+WHAT THE PROGRAM DOES
+----------------------------------------------------------------
+Given 16 numbers as input (the "clues"), the program finds a
+4x4 grid where each row and column contains 1,2,3,4 without
+repetition, and the number of visible "skyscrapers" from each
+side matches the clues.
+
+A taller skyscraper hides all shorter ones behind it.
+
+Example:
+  Looking left at [1, 2, 3, 4] -> you see 4 (all visible)
+  Looking left at [4, 1, 2, 3] -> you see 1 (4 hides the rest)
+  Looking left at [2, 3, 1, 4] -> you see 3 (2, then 3, then 4)
+
+----------------------------------------------------------------
+INPUT FORMAT
+----------------------------------------------------------------
+./rush01 "col1top col2top col3top col4top
+          col1bottom col2bottom col3bottom col4bottom
+          row1left row2left row3left row4left
+          row1right row2right row3right row4right"
+
+Stored in clues[16]:
+  clues[0..3]   = top    (viewed from above)
+  clues[4..7]   = bottom (viewed from below)
+  clues[8..11]  = left   (viewed from left)
+  clues[12..15] = right  (viewed from right)
+
+----------------------------------------------------------------
+PSEUDOCODE - FULL PROGRAM FLOW
+----------------------------------------------------------------
+
+main:
+  1. check_input      -> is argc == 2? length == 31? valid chars?
+  2. input_parse      -> convert argv[1] string to int clues[16]
+  3. init grid[4][4]  -> set all cells to 0
+  4. solve            -> find the solution
+  5. print_grid       -> print the result
+  if any step fails   -> print "Error\n"
+
+----------------------------------------------------------------
+FUNCTION BY FUNCTION
+----------------------------------------------------------------
+
+INPUT_CHECK(argc, str):
+  - argc must be 2 (program name + one argument)
+  - string length must be exactly 31 (16 digits + 15 spaces)
+  - characters at even positions must be '1' to '4'
+  - characters at odd positions must be ' '
+  returns 1 if valid, 0 if error
+
+INPUT_PARSE(str, clues):
+  - walks through str char by char
+  - if char is not a space: clues[j] = char - '0', j++
+  - converts ASCII digits to integers
+  result: clues[16] filled with integers 1 to 4
+
+COUNT_VISIBLE(sequence[4]):
+  - first element is always visible (visible = 1, max = sequence[0])
+  - for each next element:
+      if element > max: visible++, max = element
+      else: hidden (do nothing)
+  returns total visible count
+
+CHECK_REPEAT(grid, col, row, nbr):
+  - scans the entire row: is nbr already there?
+  - scans the entire column: is nbr already there?
+  returns 1 if repeated (problem), 0 if free (ok)
+
+CHECK_LEFT / CHECK_RIGHT / CHECK_TOP / CHECK_BOTTOM:
+  - each function builds a sequence of 4 numbers
+    from the corresponding row or column
+  - compares count_visible(sequence) with the expected clue
+  - for RIGHT and BOTTOM: sequence is built in reverse order
+  returns 1 if all match, 0 if any mismatch
+
+CHECK_COMPLETE(grid, clues):
+  - calls check_left, check_right, check_top, check_bottom
+  - if all 4 pass: returns 1 (solution found!)
+  - if any fails: returns 0
+
+----------------------------------------------------------------
+SOLVE - STEP BY STEP (THE HEART OF THE PROGRAM)
+----------------------------------------------------------------
+
+solve(grid, clues, cell):
+
+  cell goes from 0 to 15, mapping to the grid like this:
+    cell 0  = grid[0][0]    cell 1  = grid[0][1]  ...
+    cell 4  = grid[1][0]    cell 5  = grid[1][1]  ...
+    cell 15 = grid[3][3]
+    cell 16 = DONE (all cells filled)
+
+  row = cell / 4   (integer division)
+  col = cell % 4   (remainder)
+
+  STEP 1 - BASE CASE:
+    if cell == 16 AND check_complete passes:
+      return 1  (solution found!)
+    if cell == 16 AND check_complete fails:
+      fall through to while loop (which exits immediately
+      since the grid is full), then return 0
+
+  STEP 2 - TRY NUMBERS 1 TO 4:
+    for nbr = 1 to 4:
+      if check_repeat says nbr is NOT in this row/column:
+        place nbr in grid[row][col]
+        call solve(grid, clues, cell + 1) recursively
+          if recursive call returns 1: return 1 (propagate success)
+          if recursive call returns 0: continue to next nbr
+      nbr++
+
+  STEP 3 - BACKTRACK:
+    if no number worked:
+      set grid[row][col] = 0  (erase, cell is empty again)
+      return 0  (tell the previous call: "I failed, try something else")
+
+----------------------------------------------------------------
+EXAMPLE TRACE (simplified, first 3 cells)
+----------------------------------------------------------------
+
+Start: grid all zeros, solve(cell=0)
+
+  cell=0, row=0, col=0
+  try nbr=1: not repeated -> grid[0][0]=1
+    cell=1, row=0, col=1
+    try nbr=1: already in row! skip
+    try nbr=2: not repeated -> grid[0][1]=2
+      cell=2, row=0, col=2
+      try nbr=1: already in row! skip
+      try nbr=2: already in row! skip
+      try nbr=3: not repeated -> grid[0][2]=3
+        ... continues recursively until cell=16
+        if check_complete passes -> return 1 all the way up!
+        if check_complete fails  -> backtrack
+
+  if no solution found with grid[0][0]=1:
+    grid[0][0] = 0  (backtrack)
+    try nbr=2: grid[0][0]=2
+    ... and so on
+
+----------------------------------------------------------------
+KEY CONCEPTS
+----------------------------------------------------------------
+
+RECURSION:
+  solve calls itself with cell+1.
+  Each call handles exactly one cell.
+  When it reaches cell=16, it checks if the grid is valid.
+
+BACKTRACKING:
+  If a number doesn't work, we erase it (set to 0) and try
+  the next one. If no number works in a cell, we return 0
+  to tell the previous call to try a different number.
+  This way the program explores all possibilities without
+  getting stuck.
+
+WHY grid[row][col] = 0 AFTER THE WHILE:
+  After trying all 4 numbers and none worked, the cell must
+  be reset to 0 before returning. Otherwise the grid would
+  have a leftover number that confuses check_repeat in
+  future recursive calls.
+
+================================================================
