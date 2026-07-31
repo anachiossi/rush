@@ -22,3 +22,10 @@ vgcore.*
 *.swp
 *.swo
 *~
+
+# python
+__pycache__/
+.mypy_cache/
+*.pyc
+.pytest_cache/
+.env
