@@ -1,0 +1,218 @@
+py04 trace - 2026-07-31 09:52:03
+filter: <none>
+'!' marks a line where your output and the expected output differ.
+
+=== ex0-denied ===
+    source : ex0/ft_ancient_text.py
+    argv   : /etc/shadow
+    stdin  : <empty>
+    exit   : 0
+    result : stdout OK, stderr OK
+
+    --- stdout ---
+      line | got                                                          | expected
+         1 | === Cyber Archives Recovery ===                              | === Cyber Archives Recovery ===
+         2 | Accessing file '/etc/shadow'                                 | Accessing file '/etc/shadow'
+         3 | Error opening file '/etc/shadow': [Errno 13] Permission denied: '/etc/shadow' | Error opening file '/etc/shadow': [Errno 13] Permission denied: '/etc/shadow'
+
+    --- stderr ---
+      (both empty)
+
+=== ex0-missing ===
+    source : ex0/ft_ancient_text.py
+    argv   : foo
+    stdin  : <empty>
+    exit   : 0
+    result : stdout OK, stderr OK
+
+    --- stdout ---
+      line | got                                                          | expected
+         1 | === Cyber Archives Recovery ===                              | === Cyber Archives Recovery ===
+         2 | Accessing file 'foo'                                         | Accessing file 'foo'
+         3 | Error opening file 'foo': [Errno 2] No such file or directory: 'foo' | Error opening file 'foo': [Errno 2] No such file or directory: 'foo'
+
+    --- stderr ---
+      (both empty)
+
+=== ex0-read ===
+    source : ex0/ft_ancient_text.py
+    argv   : ancient_fragment.txt
+    stdin  : <empty>
+    exit   : 0
+    result : stdout OK, stderr OK
+
+    --- stdout ---
+      line | got                                                          | expected
+         1 | === Cyber Archives Recovery ===                              | === Cyber Archives Recovery ===
+         2 | Accessing file 'ancient_fragment.txt'                        | Accessing file 'ancient_fragment.txt'
+         3 | ---                                                          | ---
+         4 |                                                              | 
+         5 | [FRAGMENT 001] Digital preservation protocols established 2087 | [FRAGMENT 001] Digital preservation protocols established 2087
+         6 | [FRAGMENT 002] Knowledge must survive the entropy wars       | [FRAGMENT 002] Knowledge must survive the entropy wars
+         7 | [FRAGMENT 003] Every byte saved is a victory against oblivion | [FRAGMENT 003] Every byte saved is a victory against oblivion
+         8 |                                                              | 
+         9 | ---                                                          | ---
+        10 | File 'ancient_fragment.txt' closed.                          | File 'ancient_fragment.txt' closed.
+
+    --- stderr ---
+      (both empty)
+
+=== ex0-usage ===
+    source : ex0/ft_ancient_text.py
+    argv   : <none>
+    stdin  : <empty>
+    exit   : 0
+    result : stdout OK, stderr OK
+
+    --- stdout ---
+      line | got                                                          | expected
+         1 | Usage: ft_ancient_text.py <file>                             | Usage: ft_ancient_text.py <file>
+
+    --- stderr ---
+      (both empty)
+
+=== ex1-nosave ===
+    source : ex1/ft_archive_creation.py
+    argv   : ancient_fragment.txt
+    stdin  : cases/ex1-nosave.in
+    exit   : 0
+    result : stdout OK, stderr OK
+
+    --- stdout ---
+      line | got                                                          | expected
+         1 | === Cyber Archives Recovery & Preservation ===               | === Cyber Archives Recovery & Preservation ===
+         2 | Accessing file 'ancient_fragment.txt'                        | Accessing file 'ancient_fragment.txt'
+         3 | ---                                                          | ---
+         4 |                                                              | 
+         5 | [FRAGMENT 001] Digital preservation protocols established 2087 | [FRAGMENT 001] Digital preservation protocols established 2087
+         6 | [FRAGMENT 002] Knowledge must survive the entropy wars       | [FRAGMENT 002] Knowledge must survive the entropy wars
+         7 | [FRAGMENT 003] Every byte saved is a victory against oblivion | [FRAGMENT 003] Every byte saved is a victory against oblivion
+         8 |                                                              | 
+         9 | ---                                                          | ---
+        10 | File 'ancient_fragment.txt' closed.                          | File 'ancient_fragment.txt' closed.
+        11 |                                                              | 
+        12 | Transform data:                                              | Transform data:
+        13 | ---                                                          | ---
+        14 |                                                              | 
+        15 | [FRAGMENT 001] Digital preservation protocols established 2087# | [FRAGMENT 001] Digital preservation protocols established 2087#
+        16 | [FRAGMENT 002] Knowledge must survive the entropy wars#      | [FRAGMENT 002] Knowledge must survive the entropy wars#
+        17 | [FRAGMENT 003] Every byte saved is a victory against oblivion# | [FRAGMENT 003] Every byte saved is a victory against oblivion#
+        18 |                                                              | 
+        19 | ---                                                          | ---
+        20 | Enter new file name (or empty): Not saving data.             | Enter new file name (or empty): Not saving data.
+
+    --- stderr ---
+      (both empty)
+
+=== ex1-save ===
+    source : ex1/ft_archive_creation.py
+    argv   : ancient_fragment.txt
+    stdin  : cases/ex1-save.in
+    exit   : 0
+    result : stdout OK, stderr OK
+
+    --- stdout ---
+      line | got                                                          | expected
+         1 | === Cyber Archives Recovery & Preservation ===               | === Cyber Archives Recovery & Preservation ===
+         2 | Accessing file 'ancient_fragment.txt'                        | Accessing file 'ancient_fragment.txt'
+         3 | ---                                                          | ---
+         4 |                                                              | 
+         5 | [FRAGMENT 001] Digital preservation protocols established 2087 | [FRAGMENT 001] Digital preservation protocols established 2087
+         6 | [FRAGMENT 002] Knowledge must survive the entropy wars       | [FRAGMENT 002] Knowledge must survive the entropy wars
+         7 | [FRAGMENT 003] Every byte saved is a victory against oblivion | [FRAGMENT 003] Every byte saved is a victory against oblivion
+         8 |                                                              | 
+         9 | ---                                                          | ---
+        10 | File 'ancient_fragment.txt' closed.                          | File 'ancient_fragment.txt' closed.
+        11 |                                                              | 
+        12 | Transform data:                                              | Transform data:
+        13 | ---                                                          | ---
+        14 |                                                              | 
+        15 | [FRAGMENT 001] Digital preservation protocols established 2087# | [FRAGMENT 001] Digital preservation protocols established 2087#
+        16 | [FRAGMENT 002] Knowledge must survive the entropy wars#      | [FRAGMENT 002] Knowledge must survive the entropy wars#
+        17 | [FRAGMENT 003] Every byte saved is a victory against oblivion# | [FRAGMENT 003] Every byte saved is a victory against oblivion#
+        18 |                                                              | 
+        19 | ---                                                          | ---
+        20 | Enter new file name (or empty): Saving data to 'new_fragment.txt' | Enter new file name (or empty): Saving data to 'new_fragment.txt'
+        21 | Data saved in file 'new_fragment.txt'.                       | Data saved in file 'new_fragment.txt'.
+
+    --- stderr ---
+      (both empty)
+
+=== ex2-denied ===
+    source : ex2/ft_stream_management.py
+    argv   : ancient_fragment.txt
+    stdin  : cases/ex2-denied.in
+    exit   : 0
+    result : stdout OK, stderr OK
+
+    --- stdout ---
+      line | got                                                          | expected
+         1 | === Cyber Archives Recovery & Preservation ===               | === Cyber Archives Recovery & Preservation ===
+         2 | Accessing file 'ancient_fragment.txt'                        | Accessing file 'ancient_fragment.txt'
+         3 | ---                                                          | ---
+         4 |                                                              | 
+         5 | [FRAGMENT 001] Digital preservation protocols established 2087 | [FRAGMENT 001] Digital preservation protocols established 2087
+         6 | [FRAGMENT 002] Knowledge must survive the entropy wars       | [FRAGMENT 002] Knowledge must survive the entropy wars
+         7 | [FRAGMENT 003] Every byte saved is a victory against oblivion | [FRAGMENT 003] Every byte saved is a victory against oblivion
+         8 |                                                              | 
+         9 | ---                                                          | ---
+        10 | File 'ancient_fragment.txt' closed.                          | File 'ancient_fragment.txt' closed.
+        11 |                                                              | 
+        12 | Transform data:                                              | Transform data:
+        13 | ---                                                          | ---
+        14 |                                                              | 
+        15 | [FRAGMENT 001] Digital preservation protocols established 2087# | [FRAGMENT 001] Digital preservation protocols established 2087#
+        16 | [FRAGMENT 002] Knowledge must survive the entropy wars#      | [FRAGMENT 002] Knowledge must survive the entropy wars#
+        17 | [FRAGMENT 003] Every byte saved is a victory against oblivion# | [FRAGMENT 003] Every byte saved is a victory against oblivion#
+        18 |                                                              | 
+        19 | ---                                                          | ---
+        20 | Enter new file name (or empty): Saving data to '/etc/passwd' | Enter new file name (or empty): Saving data to '/etc/passwd'
+        21 | Data not saved.                                              | Data not saved.
+
+    --- stderr ---
+      line | got                                                          | expected
+         1 | [STDERR] Error opening file '/etc/passwd': [Errno 13] Permission denied: '/etc/passwd' | [STDERR] Error opening file '/etc/passwd': [Errno 13] Permission denied: '/etc/passwd'
+
+=== ex2-missing ===
+    source : ex2/ft_stream_management.py
+    argv   : foo
+    stdin  : <empty>
+    exit   : 0
+    result : stdout OK, stderr OK
+
+    --- stdout ---
+      line | got                                                          | expected
+         1 | === Cyber Archives Recovery & Preservation ===               | === Cyber Archives Recovery & Preservation ===
+         2 | Accessing file 'foo'                                         | Accessing file 'foo'
+
+    --- stderr ---
+      line | got                                                          | expected
+         1 | [STDERR] Error opening file 'foo': [Errno 2] No such file or directory: 'foo' | [STDERR] Error opening file 'foo': [Errno 2] No such file or directory: 'foo'
+
+=== ex3-demo ===
+    source : ex3/ft_vault_security.py
+    argv   : <none>
+    stdin  : <empty>
+    exit   : 0
+    result : stdout OK, stderr OK
+
+    --- stdout ---
+      line | got                                                          | expected
+         1 | === Cyber Archives Security ===                              | === Cyber Archives Security ===
+         2 |                                                              | 
+         3 | Using 'secure_archive' to read from a nonexistent file:      | Using 'secure_archive' to read from a nonexistent file:
+         4 | (False, "[Errno 2] No such file or directory: '/not/existing/file'") | (False, "[Errno 2] No such file or directory: '/not/existing/file'")
+         5 |                                                              | 
+         6 | Using 'secure_archive' to read from an inaccessible file:    | Using 'secure_archive' to read from an inaccessible file:
+         7 | (False, "[Errno 13] Permission denied: '/etc/shadow'")       | (False, "[Errno 13] Permission denied: '/etc/shadow'")
+         8 |                                                              | 
+         9 | Using 'secure_archive' to read from a regular file:          | Using 'secure_archive' to read from a regular file:
+        10 | (True, '[FRAGMENT 001] Digital preservation protocols established 2087\n[FRAGMENT 002] Knowledge must survive the entropy wars\n[FRAGMENT 003] Every byte saved is a victory against oblivion\n') | (True, '[FRAGMENT 001] Digital preservation protocols established 2087\n[FRAGMENT 002] Knowledge must survive the entropy wars\n[FRAGMENT 003] Every byte saved is a victory against oblivion\n')
+        11 |                                                              | 
+        12 | Using 'secure_archive' to write previous content to a new file: | Using 'secure_archive' to write previous content to a new file:
+        13 | (True, 'Content successfully written to file')               | (True, 'Content successfully written to file')
+
+    --- stderr ---
+      (both empty)
+
+9 passed, 0 failed, 0 skipped

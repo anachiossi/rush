@@ -1,0 +1,6 @@
+py03 trace - 2026-07-31 14:40:53
+target: ex*/ft_*.py
+filter: ../../../../../Desktop/py3
+'!' marks a line where your output and the expected output differ.
+
+0 passed, 0 failed, 0 skipped

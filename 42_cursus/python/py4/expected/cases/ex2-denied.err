@@ -1,0 +1,1 @@
+[STDERR] Error opening file '/etc/passwd': [Errno 13] Permission denied: '/etc/passwd'
