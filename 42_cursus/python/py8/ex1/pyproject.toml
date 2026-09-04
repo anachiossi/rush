@@ -1,0 +1,13 @@
+[tool.poetry]
+name = "loading"
+version = "0.1.0"
+description = "Py08-The-Matrix: Learning Virtual Environments."
+authors = ["anade-mo <anade-mo@student.42roma.it>"]
+package-mode = false
+
+[tool.poetry.dependencies]
+python = "^3.10"
+pandas = "^2.0"
+numpy = "^1.26"
+requests = "^2.31"
+matplotlib = "^3.8"

@@ -1,0 +1,10 @@
+.env
+matrix_env/
+.venv/
+__pycache__/
+.mypy_cache/
+*.pyc
+.pytest_cache/
+test_env/
+*.png
+pokedex.csv
